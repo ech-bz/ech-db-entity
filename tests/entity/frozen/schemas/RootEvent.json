@@ -1,0 +1,22 @@
+{
+  "Enum": {
+    "name": "RootEvent",
+    "variants": [
+      [
+        "Genesis",
+        {
+          "Fields": [
+            [
+              "name",
+              "String"
+            ],
+            [
+              "probe",
+              "Bool"
+            ]
+          ]
+        }
+      ]
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "Enum": {
+    "name": "CommandError",
+    "variants": [
+      [
+        "Args",
+        {
+          "Fields": [
+            [
+              "message",
+              "String"
+            ]
+          ]
+        }
+      ],
+      [
+        "Encode",
+        {
+          "Fields": [
+            [
+              "message",
+              "String"
+            ]
+          ]
+        }
+      ],
+      [
+        "Entity",
+        {
+          "Fields": [
+            [
+              "code",
+              "String"
+            ],
+            [
+              "message",
+              "String"
+            ]
+          ]
+        }
+      ]
+    ]
+  }
+}

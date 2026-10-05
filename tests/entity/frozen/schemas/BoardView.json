@@ -1,0 +1,37 @@
+{
+  "Struct": {
+    "fields": [
+      [
+        "version",
+        "U32"
+      ],
+      [
+        "title",
+        "String"
+      ],
+      [
+        "slug",
+        "String"
+      ],
+      [
+        "locked",
+        {
+          "Option": "Bool"
+        }
+      ],
+      [
+        "threads",
+        "U64"
+      ],
+      [
+        "moderators",
+        "U64"
+      ],
+      [
+        "events",
+        "U64"
+      ]
+    ],
+    "name": "BoardView"
+  }
+}

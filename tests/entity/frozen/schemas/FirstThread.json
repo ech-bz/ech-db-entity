@@ -1,0 +1,15 @@
+{
+  "Struct": {
+    "fields": [
+      [
+        "num",
+        "U64"
+      ],
+      [
+        "title",
+        "String"
+      ]
+    ],
+    "name": "FirstThread"
+  }
+}

@@ -1,0 +1,16 @@
+[package]
+name = "board-program"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+legacy = ["board-model/legacy"]
+
+[dependencies]
+board-model = { path = "../board-model" }
+ech-db-entity = { path = "../../crates/ech-db-entity" }
+bcs.workspace = true
+serde.workspace = true

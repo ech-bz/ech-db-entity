@@ -1,0 +1,5 @@
+{
+  "hex": "04",
+  "name": "event_board_locked",
+  "schema": "BoardEvent"
+}

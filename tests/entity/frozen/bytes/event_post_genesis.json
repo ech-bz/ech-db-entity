@@ -1,0 +1,5 @@
+{
+  "hex": "00835ab22d6d3991b6ae5cc7a982abe3ea5130e8ca18bcd8c8393da482b05ec44f2a000000000000000568656c6c6f",
+  "name": "event_post_genesis",
+  "schema": "PostEvent"
+}

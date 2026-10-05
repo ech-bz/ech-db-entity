@@ -1,0 +1,15 @@
+[package]
+name = "board-schema"
+version.workspace = true
+edition.workspace = true
+
+[features]
+legacy = ["board-model/legacy"]
+
+[dependencies]
+board-model = { path = "../../examples/board-model" }
+ech-db-entity = { path = "../../crates/ech-db-entity" }
+bcs.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+hex.workspace = true

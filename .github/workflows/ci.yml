@@ -1,0 +1,56 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install foundationdb client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends clang libclang-dev cmake perl
+          curl -fsSL -o /tmp/fdb-clients.deb https://github.com/apple/foundationdb/releases/download/7.3.63/foundationdb-clients_7.3.63-1_amd64.deb
+          sudo dpkg -i /tmp/fdb-clients.deb
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: rustup target add wasm32-unknown-unknown
+      - run: cargo build -p board-program --release --target wasm32-unknown-unknown
+      - run: CARGO_TARGET_DIR=target/legacy cargo build -p board-program --release --target wasm32-unknown-unknown --features legacy
+      - run: cargo test --workspace
+      - run: tests/services.sh
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/board-frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: examples/board-frontend/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npx tsc --noEmit
+  frozen-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin "${{ github.base_ref }}"
+            echo "sha=$(git merge-base "origin/${{ github.base_ref }}" HEAD)" >> "$GITHUB_OUTPUT"
+          else
+            echo "sha=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.base.outputs.sha != '' && steps.base.outputs.sha != '0000000000000000000000000000000000000000'
+        run: |
+          if git diff --unified=0 "${{ steps.base.outputs.sha }}" HEAD -- tests/entity/frozen | grep -E '^-[^-]'; then
+            echo "frozen corpus is append-only: existing entries cannot be modified or removed" >&2
+            exit 1
+          fi

@@ -1,0 +1,40 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/ech-db-entity",
+    "crates/ech-db-entity-macros",
+    "tests/entity",
+    "examples/board-model",
+    "examples/board-program",
+    "tools/board-schema",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+[workspace.dependencies]
+ech-db-client = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+ech-db-guest = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+ech-db-protocol = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+ech-db-recovery = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+ech-db-server = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+ech-db-test-fixtures = { git = "https://github.com/ech-bz/ech-db-core", rev = "6f5d08269d03eba22aa343abfe51f44adef33e7b" }
+bcs = "0.2.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+foundationdb-tuple = "0.11.0"
+blake2b_simd = "1.0.5"
+ed25519-dalek = "3.0.0"
+rand = "0.9"
+tokio = { version = "1.53", features = ["rt-multi-thread", "macros", "signal", "time", "sync", "net", "io-util"] }
+wasmi = { version = "2.0.0", features = ["deterministic"] }
+thiserror = "2.0"
+strum = { version = "0.28", features = ["derive"] }
+hex = "0.4"
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = { version = "2.0", features = ["full"] }
+
+[profile.release]
+panic = "abort"

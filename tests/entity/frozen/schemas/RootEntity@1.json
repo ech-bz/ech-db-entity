@@ -1,0 +1,14 @@
+{
+  "entity": "RootEntity",
+  "fields": [
+    {
+      "bcs": "String",
+      "kind": "Plain",
+      "name": "name",
+      "ty": "String"
+    }
+  ],
+  "key": [],
+  "migration": "Initial",
+  "version": 1
+}

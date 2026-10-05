@@ -1,0 +1,21 @@
+[package]
+name = "ech-db-entity-tests"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+ech-db-entity = { path = "../../crates/ech-db-entity" }
+board-model = { path = "../../examples/board-model" }
+board-schema = { path = "../../tools/board-schema" }
+ech-db-protocol.workspace = true
+ech-db-server.workspace = true
+ech-db-recovery.workspace = true
+ech-db-test-fixtures.workspace = true
+bcs.workspace = true
+serde.workspace = true
+rand.workspace = true
+ed25519-dalek.workspace = true
+hex.workspace = true
+foundationdb-tuple.workspace = true
+wasmi.workspace = true
+tokio.workspace = true

@@ -1,0 +1,23 @@
+{
+  "Struct": {
+    "fields": [
+      [
+        "num",
+        "U64"
+      ],
+      [
+        "title",
+        "String"
+      ],
+      [
+        "posts",
+        "U64"
+      ],
+      [
+        "events",
+        "U64"
+      ]
+    ],
+    "name": "ThreadView"
+  }
+}
